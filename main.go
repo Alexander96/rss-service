@@ -114,11 +114,51 @@ func HandleRSS(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(output)
 }
 
+func Refresh(w http.ResponseWriter, r *http.Request) {
+	token := r.Header.Get("token")
+	if token == "" {
+		w.WriteHeader(http.StatusUnauthorized)
+		return
+	}
+
+	claims := &Claims{}
+
+	tkn, err := jwt.ParseWithClaims(token, claims, func(token *jwt.Token) (interface{}, error) {
+		return jwtKey, nil
+	})
+	if err != nil {
+		if err == jwt.ErrSignatureInvalid {
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	if !tkn.Valid {
+		w.WriteHeader(http.StatusUnauthorized)
+		return
+	}
+
+	expirationTime := time.Now().Add(30 * time.Minute)
+	claims.ExpiresAt = jwt.NewNumericDate(expirationTime)
+	newToken := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	tokenString, err := newToken.SignedString(jwtKey)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	w.Header().Add("token", tokenString)
+	w.Header().Set("content-type", "application/json")
+	resp := make(map[string]string)
+	resp["message"] = "success"
+	jsonResp, _ := json.Marshal(resp)
+	w.Write(jsonResp)
+}
+
 func main() {
 	http.HandleFunc("/rss", HandleRSS)
 	http.HandleFunc("/login", Login)
-	//http.HandleFunc("/refresh", Refresh)
-	//http.HandleFunc("/logout", Logout)
+	http.HandleFunc("/refresh", Refresh)
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		log.Println("There was an error listening on port :8080", err)
