@@ -28,7 +28,7 @@ type Claims struct {
 }
 
 type RSSInput struct {
-	Urls []string `json:urls`
+	Urls []string `json:"urls"`
 }
 type RSSOutput struct {
 	Items []rssreader.RssItem
