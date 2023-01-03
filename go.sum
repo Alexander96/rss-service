@@ -4,5 +4,7 @@ github.com/Alexander96/rssreader v1.0.1 h1:ksUfeYYNN9j9kpgDThpG3mg80d/C9s4v0/gBj
 github.com/Alexander96/rssreader v1.0.1/go.mod h1:eKp+F06h+xs/6INFrHAgLin6+F9CUrwCXGCoqhtaNBE=
 github.com/Alexander96/rssreader v1.0.2 h1:6cdp7dmE2hr/PxClaftnMcBUlP5BGfMb6wsbdBlvLLg=
 github.com/Alexander96/rssreader v1.0.2/go.mod h1:JhjjnwoTWk7brqJKB3t5rlzNVmPwEHqev2tzHUYVchE=
+github.com/Alexander96/rssreader v1.0.3 h1:tsFuokgvjn90L1dcOj4ji7hiqMGWKs/JsyNi3oMUBIo=
+github.com/Alexander96/rssreader v1.0.3/go.mod h1:JhjjnwoTWk7brqJKB3t5rlzNVmPwEHqev2tzHUYVchE=
 github.com/golang-jwt/jwt/v4 v4.4.3 h1:Hxl6lhQFj4AnOX6MLrsCb/+7tCj7DxP7VA+2rDIq5AU=
 github.com/golang-jwt/jwt/v4 v4.4.3/go.mod h1:m21LjoU+eqJr34lmDMbreY2eSTRJ1cv77w39/MY0Ch0=
