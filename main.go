@@ -105,7 +105,7 @@ func HandleRSS(w http.ResponseWriter, r *http.Request) {
 
 	items, errRss := rssreader.Parse(rssInput.Urls)
 	if errRss != nil {
-		fmt.Printf("ERROR: %s\n", err)
+		fmt.Printf("ERROR: %s\n", errRss)
 	}
 
 	output := RSSOutput{Items: items}
