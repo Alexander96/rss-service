@@ -59,3 +59,9 @@ curl --request GET 'localhost:8080/rss' \
     ]
 }'
 ```
+
+Refreshing a token:
+```
+curl --request GET 'localhost:8080/refresh' \
+--header 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjcyODAyMzEwfQ.-MJYaKk5jRr3YDF6GGzK7HW1ykECTfrH-M13CH1FVmw'
+```
